@@ -62,7 +62,7 @@ cors_origins = os.getenv(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
+    allow_origins=["*"],  # Allow all origins for Vercel deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -87,5 +87,11 @@ async def root():
     }
 
 
-# For Vercel serverless deployment
-handler = app
+@app.get("/api")
+async def api_root():
+    """API root endpoint"""
+    return {
+        "name": "SkillBridge API",
+        "version": "1.0.0",
+        "status": "operational"
+    }
