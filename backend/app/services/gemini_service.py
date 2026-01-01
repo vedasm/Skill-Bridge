@@ -89,6 +89,7 @@ class GeminiService:
     
     def __init__(self):
         self._model = None
+        self._genai = None
     
     @property
     def api_key(self):
@@ -99,9 +100,11 @@ class GeminiService:
     def model(self):
         if self._model is None:
             import google.generativeai as genai
+            self._genai = genai
             genai.configure(api_key=self.api_key)
+            # Use the correct model name - gemini-1.5-flash or gemini-1.5-pro
             self._model = genai.GenerativeModel(
-                model_name="gemini-pro",
+                model_name="gemini-1.5-flash",  # Updated model name
                 generation_config={
                     "temperature": 0.7,
                     "max_output_tokens": 2048,
@@ -210,7 +213,7 @@ class AIService:
     """
     Unified AI service with automatic fallback
     Primary: Gemini
-    Fallback: Groq (Llama 3.1 70B)
+    Fallback: Groq (Llama 3.3 70B)
     """
     
     def __init__(self):
