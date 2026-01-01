@@ -1,7 +1,7 @@
 """
 Pydantic models for request/response validation
 """
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List, Dict, Any
 
 
@@ -52,6 +52,8 @@ class AnalyzeRequest(BaseModel):
 
 class AnalyzeResponse(BaseModel):
     """Response model for resume analysis"""
+    model_config = ConfigDict(protected_namespaces=())
+    
     ats_score: int = Field(ge=0, le=100)
     keyword_match_rate: int = Field(ge=0, le=100)
     analysis: Analysis
