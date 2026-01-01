@@ -5,8 +5,6 @@ import AnalysisResults from './components/AnalysisResults';
 import LoadingSpinner from './components/LoadingSpinner';
 import { MIN_JOB_DESCRIPTION_LENGTH } from './utils/constants';
 
-import ParallaxBackground from './components/ParallaxBackground';
-
 function App() {
     const {
         file,
@@ -23,16 +21,14 @@ function App() {
     const canAnalyze = file && jobDescription.length >= MIN_JOB_DESCRIPTION_LENGTH && !loading;
 
     return (
-        <div className="min-h-screen py-6 px-3 sm:px-6 lg:px-8 relative overflow-x-hidden">
-            <ParallaxBackground />
-
+        <div className="min-h-screen py-6 px-3 sm:px-6 lg:px-8 relative overflow-x-hidden bg-gradient-to-br from-sky-50 to-green-50">
             <div className="relative w-full max-w-7xl mx-auto z-10">
                 {/* Header */}
                 <header className="text-center mb-8 sm:mb-12">
                     <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
                         <span className="gradient-text">SkillBridge</span>
                     </h1>
-                    <p className="text-base sm:text-xl text-slate-400 max-w-2xl mx-auto px-2">
+                    <p className="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto px-2">
                         AI-powered ATS resume analyzer with personalized skill development roadmaps
                     </p>
 
@@ -41,7 +37,7 @@ function App() {
                         {['ATS Scoring', 'Keyword Analysis', 'Skill Roadmap'].map((feature) => (
                             <span
                                 key={feature}
-                                className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-slate-400"
+                                className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/50 border border-slate-200 text-xs sm:text-sm text-slate-600 shadow-sm"
                             >
                                 {feature}
                             </span>
@@ -53,13 +49,13 @@ function App() {
                 {!results ? (
                     <main className="space-y-8">
                         {/* Input section */}
-                        <div className="glass p-6 sm:p-8 rounded-2xl space-y-8">
+                        <div className="glass p-6 sm:p-8 rounded-2xl space-y-8 shadow-lg">
                             <FileUpload file={file} onFileChange={setFile} />
                             <JobDescriptionInput value={jobDescription} onChange={setJobDescription} />
 
                             {/* Error message */}
                             {error && (
-                                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 flex items-start gap-3">
+                                <div className="p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 flex items-start gap-3">
                                     <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -96,13 +92,13 @@ function App() {
 
                         {/* Loading state */}
                         {loading && (
-                            <div className="glass p-8 rounded-2xl">
+                            <div className="glass p-8 rounded-2xl shadow-lg">
                                 <LoadingSpinner />
                             </div>
                         )}
 
                         {/* How it works section */}
-                        <section className="glass p-6 sm:p-8 rounded-2xl">
+                        <section className="glass p-6 sm:p-8 rounded-2xl shadow-lg">
                             <h2 className="text-xl font-bold mb-6 gradient-text">How it works</h2>
                             <div className="grid sm:grid-cols-3 gap-6">
                                 {[
@@ -123,10 +119,10 @@ function App() {
                                     },
                                 ].map((step, idx) => (
                                     <div key={idx} className="text-center">
-                                        <div className="w-14 h-14 mx-auto mb-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center text-2xl">
+                                        <div className="w-14 h-14 mx-auto mb-3 rounded-xl bg-sky-100 flex items-center justify-center text-2xl border border-sky-200">
                                             {step.icon}
                                         </div>
-                                        <h3 className="font-semibold text-slate-200 mb-1">{step.title}</h3>
+                                        <h3 className="font-semibold text-slate-800 mb-1">{step.title}</h3>
                                         <p className="text-sm text-slate-500">{step.description}</p>
                                     </div>
                                 ))}

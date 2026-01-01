@@ -67,7 +67,7 @@ export default function JobDescriptionInput({ value, onChange }) {
                         <button
                             type="button"
                             onClick={() => setShowRecent(!showRecent)}
-                            className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                            className="text-sm text-sky-600 hover:text-sky-700 transition-colors font-medium"
                         >
                             Recent ({recentJDs.length})
                         </button>
@@ -77,7 +77,7 @@ export default function JobDescriptionInput({ value, onChange }) {
                         <button
                             type="button"
                             onClick={clearAll}
-                            className="text-sm text-slate-500 hover:text-slate-400 transition-colors"
+                            className="text-sm text-slate-500 hover:text-slate-700 transition-colors"
                         >
                             Clear
                         </button>
@@ -87,13 +87,13 @@ export default function JobDescriptionInput({ value, onChange }) {
 
             {/* Recent JDs dropdown */}
             {showRecent && recentJDs.length > 0 && (
-                <div className="mb-3 p-3 glass rounded-lg max-h-48 overflow-y-auto">
+                <div className="mb-3 p-3 glass rounded-lg max-h-48 overflow-y-auto shadow-lg bg-white/80">
                     <p className="text-xs text-slate-500 mb-2">Click to load:</p>
                     {recentJDs.map((jd, idx) => (
                         <button
                             key={idx}
                             onClick={() => loadRecent(jd)}
-                            className="w-full text-left p-2 rounded hover:bg-white/5 text-sm text-slate-400 truncate transition-colors"
+                            className="w-full text-left p-2 rounded hover:bg-sky-50 text-sm text-slate-600 truncate transition-colors"
                         >
                             {jd.substring(0, 80)}...
                         </button>
@@ -107,14 +107,14 @@ export default function JobDescriptionInput({ value, onChange }) {
                     onChange={(e) => onChange(e.target.value)}
                     onBlur={handleBlur}
                     placeholder="Paste the job description here. Include job title, requirements, responsibilities, and qualifications for the most accurate analysis..."
-                    className="textarea"
+                    className="textarea shadow-sm"
                     maxLength={MAX_JOB_DESCRIPTION_LENGTH}
                 />
 
                 {/* Character counter */}
                 <div className="absolute bottom-3 right-3 flex items-center gap-2">
-                    <span className={`text-xs ${isNearLimit ? 'text-amber-400' :
-                        isValid ? 'text-green-400' : 'text-slate-500'
+                    <span className={`text-xs ${isNearLimit ? 'text-amber-500' :
+                        isValid ? 'text-green-600' : 'text-slate-400'
                         }`}>
                         {characterCount.toLocaleString()} / {MAX_JOB_DESCRIPTION_LENGTH.toLocaleString()}
                     </span>
@@ -123,7 +123,7 @@ export default function JobDescriptionInput({ value, onChange }) {
 
             {/* Validation hint */}
             {!isValid && characterCount > 0 && (
-                <p className="mt-2 text-amber-400 text-sm flex items-center gap-2">
+                <p className="mt-2 text-amber-600 text-sm flex items-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
