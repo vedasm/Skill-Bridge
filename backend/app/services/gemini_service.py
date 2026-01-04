@@ -104,7 +104,7 @@ class GeminiService:
             genai.configure(api_key=self.api_key)
             # Use the correct model name - gemini-1.5-flash or gemini-1.5-pro
             self._model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash",  # Updated model name
+                model_name="gemini-2.5-flash",  # Updated model name
                 generation_config={
                     "temperature": 0.7,
                     "max_output_tokens": 2048,
